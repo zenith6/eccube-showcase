@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Showcase" basedir="." default="package">
+    <includepath classpath="tasks" />
+    <taskdef name="eccube-get-plugin-info" classname="eccube.EccubeGetPluginInfoTask" />
+
+    <property file="build.properties" />
+
+    <target name="prepare">
+        <mkdir dir="${dist_dir}" />
+    </target>
+
+    <target name="build" depends="prepare">
+        <exec command="composer install --no-dev" logoutput="true" checkreturn="true" />
+    </target>
+
+    <target name="package" depends="build">
+        <eccube-get-plugin-info pluginDir="${src_dir}" key="PLUGIN_VERSION" outputProperty="plugin_version" />
+        <property name="package" value="${dist_dir}/${project_id}-${plugin_version}.tar.gz" />
+        <delete file="${package}" quiet="true" />
+        <tar basedir="${src_dir}" destfile="${package}" compression="gzip" />
+    </target>
+
+    <target name="plugin-info">
+        <eccube-get-plugin-info src="${src_dir}/plugin_info.php" key="${key}" />
+    </target>
+</project>
