@@ -1,0 +1,36 @@
+{
+    "name": "zenith6/eccube-showcase",
+    "description": "Add product showcase system to EC-CUBE.",
+    "type": "eccube-plugin",
+    "license": "LGPL-2.1",
+    "support": {
+        "email": "zenith6@gmail.com",
+        "source": "https://github.com/zenith6/eccube-showcase/",
+        "issues": "https://github.com/zenith6/eccube-showcase/issues"
+    },
+    "authors": [
+        {
+            "name": "Seiji Nitta",
+            "email": "zenith6@gmail.com",
+            "homepage": "http://zenith6.github.io/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "zenith6/eccube-zelib": "dev-master"
+    },
+    "require-dev": {
+        "phing/phing": "*",
+        "phpunit/phpunit": "*"
+    },
+    "config": {
+        "vendor-dir": "src/vendor",
+        "bin-dir": "src/bin"
+    },
+    "autoload": {
+        "psr-0": {
+            "plg_Showcase_": "src/library"
+        }
+    }
+}
