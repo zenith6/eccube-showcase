@@ -29,14 +29,14 @@ require_once CLASS_EX_REALDIR . 'page_extends/admin/LC_Page_Admin_Ex.php';
 class plg_Showcase_Pages_ConfigPage extends LC_Page_Admin_Ex
 {
     /**
-     * @var Zenith_Eccube_PageStorage
+     * @var Zeclib_PageStorage
      */
     public $storage;
 
     /**
      * @var array
      */
-    public $errors;
+    public $errors = array();
 
     public function init()
     {
@@ -66,9 +66,8 @@ class plg_Showcase_Pages_ConfigPage extends LC_Page_Admin_Ex
     }
 
     /**
-     * @return Zenith_Eccube_PageStorage
+     * @return Zeclib_PageStorage
      */
-
     protected function restoreStorage()
     {
         $storage = $this->createDefaultStorage();
@@ -82,12 +81,11 @@ class plg_Showcase_Pages_ConfigPage extends LC_Page_Admin_Ex
     }
 
     /**
-     * @return Zenith_Eccube_PageStorage
+     * @return Zeclib_PageStorage
      */
-
     protected function createDefaultStorage()
     {
-        $storage = new Zenith_Eccube_PageStorage(array(), AUTH_MAGIC);
+        $storage = new Zeclib_PageStorage(array(), AUTH_MAGIC);
 
         return $storage;
     }
@@ -173,7 +171,6 @@ class plg_Showcase_Pages_ConfigPage extends LC_Page_Admin_Ex
     /**
      * @return SC_FormParam_Ex
      */
-
     protected function buildFormParam()
     {
         $params = new SC_FormParam_Ex();
@@ -185,7 +182,6 @@ class plg_Showcase_Pages_ConfigPage extends LC_Page_Admin_Ex
      * @param SC_FormParam_Ex $params
      * @return array
      */
-
     protected function validateFormParams(SC_FormParam_Ex $params)
     {
         $errors = $params->checkError();
@@ -196,7 +192,6 @@ class plg_Showcase_Pages_ConfigPage extends LC_Page_Admin_Ex
     /**
      * @param SC_FormParam_Ex $params
      */
-
     protected function applyFormParams(SC_FormParam_Ex $params)
     {
     }

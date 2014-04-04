@@ -16,15 +16,9 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "../eccube-zelib"
-        }
-    ],
     "require": {
         "php": ">=5.3",
-        "zenith6/eccube-zelib": "dev-master"
+        "zenith6/eccube-zeclib": "dev-develop"
     },
     "require-dev": {
         "phing/phing": "*",

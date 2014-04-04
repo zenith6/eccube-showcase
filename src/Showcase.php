@@ -42,7 +42,6 @@ class Showcase extends SC_Plugin_Base
      * @param SC_Plugin_Installer $installer プラグインインストーラー
      * @return void
      */
-
     public function install(array $plugin_info, SC_Plugin_Installer $installer = null)
     {
         parent::install($plugin_info, $installer);
@@ -57,7 +56,6 @@ class Showcase extends SC_Plugin_Base
      * @param SC_Plugin_Installer $installer プラグインインストーラー
      * @return void
      */
-
     public function uninstall(array $plugin_info, SC_Plugin_Installer $installer = null)
     {
         parent::uninstall($plugin_info, $installer);
@@ -70,7 +68,6 @@ class Showcase extends SC_Plugin_Base
      * @param SC_Plugin_Installer $installer プラグインインストーラー
      * @return void
      */
-
     public function enable(array $plugin_info, SC_Plugin_Installer $installer = null)
     {
         parent::enable($plugin_info, $installer);
@@ -83,7 +80,6 @@ class Showcase extends SC_Plugin_Base
      * @param SC_Plugin_Installer $installer プラグインインストーラー
      * @return void
      */
-
     public function disable(array $plugin_info, SC_Plugin_Installer $installer = null)
     {
         parent::disable($plugin_info, $installer);
