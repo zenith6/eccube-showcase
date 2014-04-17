@@ -19,6 +19,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+require_once dirname(__FILE__) . '/plugin_bootstrap.php';
+
 /**
  * プラグインのアップデートクラス
  *
@@ -29,11 +31,21 @@ class plugin_update
     /**
      * プラグインをアップデートします。
      *
-     * @param array $plugin_info プラグイン情報
+     * @param array $pluginInfo プラグイン情報
      * @param SC_Plugin_Installer $installer プラグインインストーラー
      * @return void
      */
-    public function update(array $plugin_info, SC_Plugin_Installer $installer)
+    public function update(array $pluginInfo, SC_Plugin_Installer $installer)
     {
+        $query = SC_Query_Ex::getSingletonInstance();
+
+        $storage = new Zeclib_DefaultMigrationStorage($query, 'Showcase');
+        $storage->versionTable = 'plg_showcase_migration';
+        $storage->containerDirectories[] = dirname(__FILE__) . '/migrations';
+
+        $migrator = new Zeclib_Migrator($storage, $query);
+        $migrator->logger = new Zeclib_EccubeMigrationLogger($this);
+
+        $migrator->up();
     }
 }

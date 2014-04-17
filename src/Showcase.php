@@ -19,6 +19,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+require_once dirname(__FILE__) . '/plugin_bootstrap.php';
+
 /**
  * ショーケースプラグイン
  *
@@ -47,6 +49,17 @@ class Showcase extends SC_Plugin_Base
         parent::install($plugin_info, $installer);
 
         $installer->copyFile('logo.png', 'logo.png');
+
+        // マイグレーションテーブルを準備。
+        $query = SC_Query_Ex::getSingletonInstance();
+        $storage = new Zeclib_DefaultMigrationStorage($query, 'Showcase');
+        $storage->versionTable = 'plg_showcase_migration';
+        $storage->containerDirectories[] = dirname(__FILE__) . '/migrations';
+        $storage->setup();
+
+        $migrator = new Zeclib_Migrator($storage, $query);
+        $migrator->logger = new Zeclib_EccubeMigrationLogger($this);
+        $migrator->markAppliedAll();
     }
 
     /**
@@ -59,6 +72,12 @@ class Showcase extends SC_Plugin_Base
     public function uninstall(array $plugin_info, SC_Plugin_Installer $installer = null)
     {
         parent::uninstall($plugin_info, $installer);
+
+        // マイグレーションテーブルを削除。
+        $query = SC_Query_Ex::getSingletonInstance();
+        $storage = new Zeclib_DefaultMigrationStorage($query, 'Showcase');
+        $storage->versionTable = 'plg_showcase_migration';
+        $storage->destroy();
     }
 
     /**

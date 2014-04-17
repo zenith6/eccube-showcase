@@ -18,20 +18,8 @@
     ],
     "repositories": [
         {
-            "type": "package",
-            "package": {
-	            "name": "zenith6/eccube-zeclib",
-				"version": "dev-master",
-				"dist": {
-					"url": "https://github.com/zenith6/eccube-zeclib/zipball/master",
-					"type": "zip"
-				},
-				"source": {
-					"url": "https://github.com/zenith6/eccube-zeclib.git",
-					"type": "git",
-					"reference": "master"
-		      	}
-			}
+            "type": "git",
+			"url": "../eccube-zeclib"
 		}
     ],
     "require": {
@@ -44,5 +32,10 @@
     },
     "config": {
         "vendor-dir": "src/vendor"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "library/"
+        }
     }
 }

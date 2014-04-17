@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="Showcase" basedir="." default="package">
-    <includepath classpath="tasks" />
-    <taskdef name="eccube-get-plugin-info" classname="eccube.EccubeGetPluginInfoTask" />
+    <import file="src/vendor/zenith6/eccube-zeclib/utils/phing/migration.xml" />
 
     <property file="build.properties" />
 
     <target name="prepare">
-        <mkdir dir="${dist_dir}" />
+        <mkdir dir="${project.dist_dir}" />
     </target>
 
     <target name="build" depends="prepare">
@@ -15,13 +14,10 @@
     </target>
 
     <target name="package" depends="build">
-        <eccube-get-plugin-info pluginDir="${src_dir}" key="PLUGIN_VERSION" outputProperty="plugin_version" />
-        <property name="package" value="${dist_dir}/${project_id}-${plugin_version}.tar.gz" />
+        <taskdef name="zeclib-plugin-info-get" classname="Zeclib_Phing_PluginInfoGetTask" />
+        <zeclib-plugin-info-get plugin="${project.src_dir}" key="PLUGIN_VERSION" to="plugin_version" />
+        <property name="package" value="${project.dist_dir}/${project.id}-${plugin_version}.tar.gz" />
         <delete file="${package}" quiet="true" />
-        <tar basedir="${src_dir}" destfile="${package}" compression="gzip" />
-    </target>
-
-    <target name="plugin-info">
-        <eccube-get-plugin-info src="${src_dir}/plugin_info.php" key="${key}" />
+        <tar basedir="${project.src_dir}" destfile="${package}" compression="gzip" />
     </target>
 </project>
