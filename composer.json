@@ -16,8 +16,26 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+	            "name": "zenith6/eccube-zeclib",
+				"version": "dev-master",
+				"dist": {
+					"url": "https://github.com/zenith6/eccube-zeclib/zipball/master",
+					"type": "zip"
+				},
+				"source": {
+					"url": "https://github.com/zenith6/eccube-zeclib.git",
+					"type": "git",
+					"reference": "master"
+		      	}
+			}
+		}
+    ],
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.1.6",
         "zenith6/eccube-zeclib": "dev-develop"
     },
     "require-dev": {
@@ -25,7 +43,6 @@
         "phpunit/phpunit": "*"
     },
     "config": {
-        "vendor-dir": "src/vendor",
-        "bin-dir": "src/bin"
+        "vendor-dir": "src/vendor"
     }
 }
